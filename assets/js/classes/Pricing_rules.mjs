@@ -32,7 +32,7 @@ export class Pricing_rules{
         return uniqItems.map(element=>{
             return {
                         item: element,
-                        count: itemsArray.reduce(acc,el=>el.name==element.name?acc+1:acc,0)
+                        count: itemsArray.reduce((acc,el)=>el.name==element.name?acc+1:acc,0)
                    }
         });
     }
