@@ -2,16 +2,18 @@
 
 export class Item{
 
-    #Name;//The item name
+    #name;//The item name
     #barcode;
     #price;
 
-        constructor(Name, price, barcode){
-
-        }
+    constructor(name, price, barcode){
+        this.#name=name;
+        this.#price=price;
+        this.#barcode=barcode;
+    }
 
     get Name(){
-        return this.#Name;
+        return this.#name;
     }
 
     get barcode(){

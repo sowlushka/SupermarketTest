@@ -1,4 +1,5 @@
 
+import { Pricing_rules } from "./Pricing_rules.mjs";
 
 export class Checkout{
     #items=[];//selected goods array
@@ -21,7 +22,7 @@ export class Checkout{
     }
 
     get total(){
-        let groupedItems=rules.groupedItems(this.#items);
+        let groupedItems=this.#rule.prototype.groupedItems(this.#items);
 
         return groupedItems;
     }
