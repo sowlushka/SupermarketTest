@@ -19,4 +19,10 @@ export class Checkout{
     item(i){
         return this.#items[i];
     }
+
+    get total(){
+        let groupedItems=rules.groupedItems(this.#items);
+
+        return groupedItems;
+    }
 }
