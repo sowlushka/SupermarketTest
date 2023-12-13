@@ -12,7 +12,7 @@ export class Item{
         this.#barcode=barcode;
     }
 
-    get Name(){
+    get name(){
         return this.#name;
     }
 

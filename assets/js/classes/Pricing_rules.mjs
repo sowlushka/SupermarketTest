@@ -39,7 +39,7 @@ export class Pricing_rules{
     
 
     calcDiscountPrice(item, count){
-        let rule=getProductRule(item);
+        let rule=this.getProductRule(item.name);
         return Math.floor(count/rule.numberForDiscount)*rule.discountPrice+(count%rule.numberForDiscount)*item.price;
     }
 

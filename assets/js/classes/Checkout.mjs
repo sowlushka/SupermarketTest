@@ -20,8 +20,9 @@ export class Checkout{
     }
 
     get total(){
-        let groupedItems=this.#rule.groupProductsByItem(this.#items);
+        let groupedItems=this.#rule.groupProductsByItem(this.#items);// divide the stream of goods into groups
+        let sum=groupedItems.reduce((acc,el)=>acc+this.#rule.calcDiscountPrice(el.item, el.count),0)
 
-        return groupedItems;
+        return this.#rule.calcCommonDiscount(sum);
     }
 }

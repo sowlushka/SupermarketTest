@@ -1,0 +1,20 @@
+
+
+
+form{
+    border: 1px solid black;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.form-caption{
+    text-align: center;
+    margin: 5px auto;
+
+}
+
+#item-name{
+    width: 20px;
+    padding-left: 10px;
+}
