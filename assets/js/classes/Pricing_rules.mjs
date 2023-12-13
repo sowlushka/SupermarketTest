@@ -48,6 +48,10 @@ export class Pricing_rules{
     }
 
 
-
+    reset(){
+        this.#rules.length=0;
+        this.#commonDiscountLowPriceLimit=undefined;
+        this.#commonDiscountPercentage=undefined;
+    }
 
 }

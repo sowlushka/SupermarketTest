@@ -34,10 +34,37 @@
         <div id="card-wrapper"></div>
     </div>
 
-    <form id="scanning">
-        <div class="form-caption">Set discount</div>
+    <form id="price-rule-form">
+        <div class="form-caption">Set pricing rules</div>
+        <div class="form-input-wrapper">
+            <div class="form-input">
+                <label for="select-item-discount">Item:</label>
+                <select name="select-item-discount" id="select-item-discount">
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="form-input">
+                <label for="discount-count">Disc. count:</label>
+                <input type="number" placeholder="2" id="discount-count">
+            </div>
+            <div class="form-input">
+                <label for="discount-price">Disc. price:</label>
+                <input type="number" placeholder="90" id="discount-price">
+            </div>
+        </div>
+        <div class="form-input-wrapper">
 
+        </div>
+        <div class="form-input-wrapper">
+            <button id="btn-rule-add" type="button">Add</button>
+            <button id="btn-rule-reset" type="button">Reset</button>
+        </div>
     </form>
+    <div class="items-list">
+        <h3>pricing rules</h3>
+        <div id="price-rule-wrapper"></div>
+    </div>
+
 </body>
 
 </html>

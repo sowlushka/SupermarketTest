@@ -26,10 +26,9 @@ form{
 #item-name, #item-price{
     width: 30px;
     padding-left: 10px;
-    appearance: none;
 }
 
-label[for="item-name"],label[for="item-price"] {
+label{
     color:black;
     transition: color 1s ease-out;
 }
@@ -79,4 +78,19 @@ form button{
     width: 60px;
     background-color: rgb(238, 232, 227);
     border-radius: 4px;
+}
+
+select{
+    min-width: 50px;
+    margin: 5px;
+    border-radius: 4px;
+    margin: 0px;
+    height: 20px;
+}
+
+#price-rule-form input{
+     width: 68px;
+     height: 15px;
+     border-radius: 4px;
+     border: 1px solid black;
 }
