@@ -15,7 +15,7 @@ export class Pricing_rules{
         });
     }
 
-    setCommonDiscount(priceLimit, percentage){
+    setBasketDiscount(priceLimit, percentage){
         this.#commonDiscountLowPriceLimit=priceLimit;
         this.#commonDiscountPercentage=percentage;
     }
@@ -23,6 +23,10 @@ export class Pricing_rules{
 
     getProductRule(itemName){
         return this.#rules.find(el=>el.item.name==itemName);
+    }
+
+    getTotalDiscount(){
+        return {minPrice: this.#commonDiscountLowPriceLimit, percentage: this.#commonDiscountPercentage};
     }
 
 
@@ -47,11 +51,17 @@ export class Pricing_rules{
         return itemsSummaryPrice>=this.#commonDiscountLowPriceLimit?itemsSummaryPrice*(100-this.#commonDiscountPercentage)/100:itemsSummaryPrice;
     }
 
-
-    reset(){
-        this.#rules.length=0;
+    resetTotalRule(){
         this.#commonDiscountLowPriceLimit=undefined;
         this.#commonDiscountPercentage=undefined;
     }
 
+    resetItemsRules(){
+        this.#rules.length=0;
+    }
+
+    resetAll(){
+        this.resetTotalRule();
+        this.resetItemsRules();
+    }
 }
