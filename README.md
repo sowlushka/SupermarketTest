@@ -37,4 +37,4 @@ Write tests to make sure your code works. Commit often so we can follow the deci
 
 ## Submitting your solution
 
-Please create a new branch and create a pull request into master. If you have any questions please email radu@zeneducate.com
+Please create a new branch and create a pull request into master. If you have any questions please email
