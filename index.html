@@ -10,7 +10,11 @@
 </head>
 
 <body>
-
+    <h1>Supermarket test task</h1>
+    <div class="task">
+        The conditions of the task and js-code are <a href="https://github.com/sowlushka/SupermarketTest" target="_blank">here</a>.
+    </div>
+    <!--Creating items-->
     <form>
         <div class="form-caption">Create items</div>
         <div class="form-input-wrapper">
@@ -34,6 +38,7 @@
         <div id="card-wrapper"></div>
     </div>
 
+    <!--Creating price rules-->
     <form id="price-rule-form">
         <div class="price-rule-items">
             <div class="form-caption">Set item pricing rules</div>
@@ -80,6 +85,30 @@
         <div id="price-rule-wrapper"></div>
     </div>
 
+    <!--SCANNING-->
+    <form id="scanning">
+        <div class="form-caption">Scanning items</div>
+        <div class="form-input-wrapper">
+            <div class="form-input">
+                <label for="select-item-scan">Select item for scanning:</label>
+                <select name="select-item-scan" id="select-item-scan">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-input-wrapper">
+            <button id="btn-scan-add" type="button">Add</button>
+            <button id="btn-scan-reset" type="button">Reset</button>
+        </div>
+    </form>
+
+    <div class="items-list">
+        <h3>basket-list</h3>
+        <div id="basket-card-wrapper">
+
+        </div>
+        <div id="basket-total-price"></div>
+    </div>
 </body>
 
 </html>

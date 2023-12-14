@@ -1,5 +1,5 @@
 
-export class Checkout{
+export class Checkout {
     #items=[];//selected goods array
     #rule={};//discount rules
 
@@ -17,6 +17,10 @@ export class Checkout{
 
     item(i){
         return this.#items[i];
+    }
+
+    get rule(){
+        return this.#rule;
     }
 
     get total(){

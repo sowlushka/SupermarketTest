@@ -15,17 +15,24 @@ const discountPrice=document.getElementById("discount-price");
 const priceRulesList=document.querySelector("#price-rule-wrapper");
 const totalDiscountMinPrice=document.getElementById("total-discount-minprice");
 const totalDiscountPercentage=document.getElementById("total-discount-percentage");
+const scanSelect=document.getElementById("select-item-scan");
+const basketList=document.getElementById("basket-card-wrapper");
+const basketTotalPrice=document.getElementById("basket-total-price");
 
 const itemsTypes=[];
+const basketItems=[];
 const pricing_rules=new Pricing_rules();
 
+
+//--------------Buttons events----------------------------------------------
 document.querySelector("#btn-create").addEventListener('click', createItem);
 
 
 document.querySelector("#btn-reset").addEventListener('click', ()=>{
     itemsTypes.length=0;
     cardWrapper.innerHTML="";
-    discountSelect.innerHTML="<option value=\"\"></option>";
+    discountSelect.innerHTML=scanSelect.innerHTML="<option value=\"\"></option>";
+
 });
 
 
@@ -33,7 +40,7 @@ document.querySelector("#btn-rule-add").addEventListener('click', createPricingR
 document.querySelector("#btn-rule-reset").addEventListener('click', ()=>{
     pricing_rules.resetItemsRules();//reset all discounts for items
     priceRulesList.innerHTML="";
-    let totalBasketRule=pricing_rules.getTotalDiscount()
+    let totalBasketRule=pricing_rules.getCommonDiscountObj()
     if(totalBasketRule.minPrice){
         showBasketPriceRule(totalBasketRule.minPrice, totalBasketRule.percentage);
     }
@@ -78,24 +85,30 @@ document.querySelector("#btn-rule-total-reset").addEventListener('click',(e)=>{
     document.querySelector("#btn-rule-total-add").disabled=false;//enable button for basket discount
 });
 
-/*
-const A=new Item("A", 50);
-const B=new Item("B",30);
-const C=new Item("C", 20);
 
-const pricing_rules=new Pricing_rules();
+document.querySelector("#btn-scan-add").addEventListener('click',(e)=>{
+    let scanValue=scanSelect.value;
+    //check empty value in the select
+    if(scanValue===""){
+        const label=document.querySelector('label[for="select-item-scan"]');
+        label.style.color="red";
+        setTimeout('document.querySelector(\'label[for="select-item-scan"]\').style=""',flashTime);
+        return;
+    }
 
-pricing_rules.addRule(A,2,90);
-pricing_rules.addRule(B,3, 75);
-pricing_rules.setBasketDiscount(200,10);
+    basketItems.push(itemsTypes[scanValue]);
+    showBasket();
+});
 
-const checkout = new Checkout(pricing_rules);
+document.querySelector("#btn-scan-reset").addEventListener('click',()=>{
+    basketItems.length=0;
+    basketList.innerHTML="";
+    basketTotalPrice.innerText="";
+});
 
-//const itemsArr=[B, A, B, B, A];
-itemsArr.forEach(el=>{checkout.scan(el)});
+//-----------------------Buttons Events End-------------------------------------------------------
 
-console.log(checkout.total);
-*/
+
 
 function createItem(){
     if(itemsTypes.some(item=>item.name==itemName.value)){
@@ -123,10 +136,11 @@ function createItem(){
     `;
     cardWrapper.insertAdjacentHTML('beforeend',card);
     itemName.value=itemPrice.value="";
-    const newOption=document.createElement("option");
-    newOption.value=itemsTypes.length-1;
-    newOption.innerText=newItem.name;
-    discountSelect.appendChild(newOption);
+
+    let html=`<option value="${itemsTypes.length-1}">${newItem.name}</option>`
+    
+    discountSelect.insertAdjacentHTML("beforeend", html);
+    scanSelect.insertAdjacentHTML("beforeend", html);
     
 }
 
@@ -179,7 +193,7 @@ function showAllPricingRules(pricing_rules){
     });
 
    
-    let totalRule=pricing_rules.getTotalDiscount();
+    let totalRule=pricing_rules.getCommonDiscountObj();
     if (totalRule.minPrice){
         showBasketPriceRule(totalRule.minPrice, totalRule.percentage);
     }
@@ -196,4 +210,20 @@ function showItemPriceRule(name, count, price){
     const newDiv=document.createElement("div");
     newDiv.innerText=`Price for ${count} items ${name} is £${price}`;
     priceRulesList.appendChild(newDiv);
+}
+
+function showBasket(){
+    const checkout = new Checkout(pricing_rules);
+    basketList.innerHTML="";
+    basketItems.forEach(item=>{
+        let card=`
+            <div class="item-card">
+                ${item.name}: ${item.price}
+            </div>
+        `;
+        basketList.insertAdjacentHTML('beforeend',card);
+        checkout.scan(item);
+    });
+
+    basketTotalPrice.innerText=`Total basket price is £${checkout.total}`;
 }

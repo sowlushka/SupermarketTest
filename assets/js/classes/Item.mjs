@@ -7,7 +7,7 @@ export class Item{
 
     constructor(name, price, barcode){
         this.#name=name;
-        this.#price=price;
+        this.#price=Number(price);
     }
 
     get name(){
